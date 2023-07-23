@@ -21,7 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             'simplepub = my_pkg.simplepublisher:main',
-            'simplepub = my_pkg.simplesubscriber:main' 
+            'simplesub = my_pkg.simplesubscriber:main' 
         ],
     },
 )

@@ -2,9 +2,9 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 
-class Sim_pub(Node):
+class Sim_sub(Node):
     def __init__(self):
-        super().__init__('simple_mpub')
+        super().__init__('simple_msub')
         self.pub = self.create_subscription(String, 'message', self.sub, 10)
         
     def sub(self, msg):
@@ -13,7 +13,7 @@ class Sim_pub(Node):
 
 def main():
     rclpy.init()
-    node = Sim_pub()
+    node = Sim_sub()
 
     try:
         rclpy.spin(node)
