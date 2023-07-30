@@ -1,0 +1,6 @@
+터틀봇 접속방법
+
+
+ssh ubuntu@192.168.0.76
+passwd: turtlebot
+

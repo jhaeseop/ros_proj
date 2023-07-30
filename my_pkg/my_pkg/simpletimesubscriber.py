@@ -4,24 +4,23 @@ from rclpy.qos import QoSProfile
 from rclpy.qos import QoSHistoryPolicy, QoSReliabilityPolicy, QoSDurabilityPolicy
 from std_msgs.msg import String
 from rclpy.qos import qos_profile_sensor_data
+from std_msgs.msg import Header
 
-
-class Sim_sub(Node):
+class Sim_time_sub(Node):
     def __init__(self):
-        super().__init__('simple_msub')
-        qos_profile = QoSProfile(
-            history=QoSHistoryPolicy.KEEP_ALL,
-            reliability=QoSReliabilityPolicy.RELIABLE,
-            durability=QoSDurabilityPolicy.TRANSIENT_LOCAL)
-        self.pub = self.create_subscription(String, 'message', self.sub, qos_profile_sensor_data)
+        super().__init__('simple_time_sub')
+        self.pub = self.create_subscription(Header, 'time', self.sub, 10)
         
     def sub(self, msg):
-        self.get_logger().info(msg.data)
-        #self.get_logger().error(msg.data)
+        # msg.stamp.nanosec
+        # msg.stamp.sec
+        # msg.frame_id
+        self.get_logger().info(f'Recieved time: {msg.stamp.sec}, {msg.stamp.nanosec}')
+        self.get_logger().info(f'Recieved frame_id: {msg.frame_id}')
 
 def main():
     rclpy.init()
-    node = Sim_sub()
+    node = Sim_time_sub()
 
     try:
         rclpy.spin(node)

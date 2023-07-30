@@ -1,26 +1,27 @@
 import rclpy
 from rclpy.node import Node
-from rclpy.qos import QoSProfile
-from rclpy.qos import QoSHistoryPolicy, QoSReliabilityPolicy, QoSDurabilityPolicy
 from std_msgs.msg import String
-from rclpy.qos import qos_profile_sensor_data
 
 
 class Sim_pub(Node):
     def __init__(self):
-        super().__init__('simple_mpub')
-        qos_profile = QoSProfile(
-            history=QoSHistoryPolicy.KEEP_ALL,
-            reliability=QoSReliabilityPolicy.RELIABLE,
-            durability=QoSDurabilityPolicy.TRANSIENT_LOCAL)
-        self.pub = self.create_publisher(String, 'message', qos_profile_sensor_data)
+        super().__init__('mpub')
+        self.pub = self.create_publisher(String, 'message', 10)
+        self.pub2 = self.create_publisher(String, 'message2', 10)
         self.create_timer(1, self.publisher)
+        self.create_timer(0.5, self.publisher2)
         self.count = 0
         
     def publisher(self):
         msg = String()
-        msg.data = 'hello world' + str(self.count)
+        msg.data = 'message -> hello' + str(self.count)
         self.pub.publish(msg)
+        self.count += 1
+        
+    def publisher2(self):
+        msg = String()
+        msg.data = 'message2 -> hello' + str(self.count)
+        self.pub2.publish(msg)
         self.count += 1
 
 def main():
