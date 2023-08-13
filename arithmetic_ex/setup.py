@@ -1,6 +1,6 @@
 from setuptools import setup
 
-package_name = 'move_turtle'
+package_name = 'arithmetic_ex'
 
 setup(
     name=package_name,
@@ -20,10 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'mt = move_turtle.moveTurtle:main',
-            'mt2 = move_turtle.moveTurtle2:main',
-            'mt3 = move_turtle.moveTurtle_0806:main',
-            'mt4 = move_turtle.moveTurtle2_0806:main',
+            "argument = arithmetic_ex.argument:main"
         ],
     },
 )

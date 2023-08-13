@@ -32,7 +32,11 @@ setup(
             'messagepub = my_pkg.messagepublisher:main',
             'messagesub1 = my_pkg.messagesubscriber1:main',
             'messagesub2 = my_pkg.messagesubscriber2:main',
-            'messagetimesub = my_pkg.messagetimesubscriber:main'
+            'messagetimesub = my_pkg.messagetimesubscriber:main',
+            'simplesss = my_pkg.simpleServiceServer:main',
+            'simplessc = my_pkg.simpleServiceClient:main',
+            'simplesas = my_pkg.simpleActionServer:main',
+            'simplesac = my_pkg.simpleActionClient:main'
         ],
     },
 )
